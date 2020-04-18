@@ -1,0 +1,40 @@
+@startuml
+
+abstract class Pizza{
+    + void prepare()
+    + void bake()
+    + void cut()
+    + void box()
+}
+
+class BJCheesePizza
+class BJPepperPizza
+class LDCheesePizza
+class LDPepperPizza
+
+
+interface AbsFactory{
+    + Pizza createPizza();
+}
+
+class BJFactory
+class LDFactory
+
+class OrderPizza
+
+BJCheesePizza <.. BJFactory
+BJPepperPizza <.. BJFactory
+LDCheesePizza <.. LDFactory
+LDPepperPizza <.. LDFactory
+
+AbsFactory <|.. BJFactory
+AbsFactory <|.. LDFactory
+
+Pizza <|-- BJCheesePizza
+Pizza <|-- BJPepperPizza
+Pizza <|-- LDCheesePizza
+Pizza <|-- LDPepperPizza
+
+OrderPizza o-- AbsFactory
+
+@enduml
